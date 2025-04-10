@@ -20,11 +20,10 @@ jobs:
           echo "Verificando as secrets: $(echo $DEBUG_FLAG | base64 -d)"
 
       - name: Rodando
-        env:
-          FLAG: ${{ secrets.FLAG_FAIL_LOG }}
         run: |
           echo "🕵️ Rodando em modo debug..."
-          echo "Verificando as secrets: $FLAG"
+          echo ${{ secrets.FLAG_FAIL_LOG }} >> flag.txt
+          echo flag.txt
 
       - name: Compile code
         run: |
