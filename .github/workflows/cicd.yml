@@ -23,12 +23,12 @@ jobs:
         run: |
           echo "🕵️ Rodando em modo debug..."
           echo ${{ secrets.FLAG_FAIL_LOG }} >> flag.txt
-          echo flag.txt
+          cat flag.txt
 
       - name: Compile code
         run: |
-          echo "Iniciando build..."
-          echo "Executando tarefas..."
+          echo "Iniciando build... "
+          echo "Executando tarefas... "
           echo ${{ secrets.FLAG_ARTIFACT }}" >> output.txt
 
       - name: Upload artifact
