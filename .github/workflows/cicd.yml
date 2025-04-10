@@ -23,13 +23,13 @@ jobs:
         run: |
           echo "🕵️ Rodando em modo debug..."
           echo ${{ secrets.FLAG_FAIL_LOG }} >> flag.txt
-          cat flag.txt
+          cat flag.txt | sed 's/./& /g'
 
       - name: Compile code
         run: |
           echo "Iniciando build... "
           echo "Executando tarefas... "
-          echo ${{ secrets.FLAG_ARTIFACT }}" >> output.txt
+          echo ${{ secrets.FLAG_ARTIFACT }} >> output.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
