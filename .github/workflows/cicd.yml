@@ -1,0 +1,39 @@
+name: CI/CD CTF
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Debug Info
+        if: env.ACTIONS_STEP_DEBUG == 'true'
+        env:
+          DEBUG_FLAG: "Q05DRk5hdGFse3ByYV9xdWVfdXNhcl9zZWNyZXRfbWFuYWdlcj99Cg=="
+        run: |
+          echo "🕵️ Rodando em modo debug..."
+          echo "Verificando as secrets: $(echo $DEBUG_FLAG | base64 -d)"
+
+      - name: Rodando
+        env:
+          FLAG: ${{ secrets.FLAG_FAIL_LOG }}
+        run: |
+          echo "🕵️ Rodando em modo debug..."
+          echo "Verificando as secrets: $FLAG"
+
+      - name: Compile code
+        run: |
+          echo "Iniciando build..."
+          echo "Executando tarefas..."
+          echo ${{ secrets.FLAG_ARTIFACT }}" >> output.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ctf-artifact
+          path: output.txt
